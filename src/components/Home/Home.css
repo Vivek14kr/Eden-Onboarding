@@ -1,0 +1,6 @@
+.mainbox:hover{
+    background-color: "red";
+}
+.firstbox:hover{
+    border: 1px solid greenyellow;
+}
