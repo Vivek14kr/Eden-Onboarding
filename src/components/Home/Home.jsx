@@ -16,15 +16,33 @@ import Step3 from "../Step3/Step3";
 import Step4 from "../Step4/Step4";
 function Home() {
   let [currentStep, setCurrentstep] = useState(1);
-  const nextButton = () => {
-    setCurrentstep((prev) => {
-      return prev + 1;
-    });
-  };
+ 
 
   let [fullName, setFullName] = useState("")
+  let [displayName, setDisplayName] = useState("");
+  let [errorCheck, setErrorCheck] = useState(false);
   const [tracker, setTracker] = useState("1px solid black");
   const [trackers, setTrackerr2] = useState("1px solid black");
+  const [workspaceName, setWorkspaceName] = useState("");
+  const [workspaceUrl, setWorkspaceUrl] = useState("");
+
+  
+  
+  const nextButton = () => {
+
+    if (currentStep===1 && (fullName === "" || displayName === "" )){
+      setErrorCheck(true);
+      return;
+    }
+    if (currentStep === 2 && (workspaceName === "")){
+       setErrorCheck(true);
+       return;
+    }
+      setCurrentstep((prev) => {
+        setErrorCheck(false);
+        return prev + 1;
+      });
+  };
   const handleClick = () => {
     if (tracker === "1px solid black") {
       if (trackers === "3px solid #624add") {
@@ -36,6 +54,9 @@ function Home() {
     }
   };
   const handleClick2 = () => {
+
+
+
     if (trackers === "1px solid black") {
       if (tracker === "3px solid #624add") {
         setTracker("1px solid black");
@@ -67,9 +88,12 @@ function Home() {
 
           <br />
           {currentStep === 1 ? (
-            <Step1 fullName={fullName} setFullName={setFullName} />
+            <Step1 errorCheck={errorCheck} setErrorCheck={setErrorCheck} fullName={fullName} setFullName={setFullName} displayName={displayName} setDisplayName={setDisplayName}/>
           ) : currentStep === 2 ? (
-            <Step2 />
+            <Step2 errorCheck={errorCheck} setErrorCheck={setErrorCheck}
+             workspaceName={workspaceName} setWorkspaceName={setWorkspaceName}
+             workspaceUrl={workspaceUrl} setWorkspaceUrl={setWorkspaceUrl}
+            />
           ) : currentStep === 3 ? (
             <Step3
               handleClick={handleClick}

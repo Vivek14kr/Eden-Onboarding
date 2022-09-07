@@ -6,7 +6,7 @@ import CardContent from "@mui/material/CardContent";
 
 import Typography from "@mui/material/Typography";
 
-function Step1({fullName, setFullName}) {
+function Step1({errorCheck, setErrorCheck, fullName, setFullName, displayName, setDisplayName}) {
 
 
 
@@ -24,8 +24,11 @@ function Step1({fullName, setFullName}) {
       <TextField
         id="standard-number"
         name="FullName"
-      
+        error={errorCheck && fullName === ""}
         style={{ width: "70%", marginTop: "10%" }}
+        onChange={(e) => {
+          setFullName(e.target.value);
+        }}
         label="Full Name"
         type="text"
         placeholder="Steve Jobs"
@@ -34,14 +37,20 @@ function Step1({fullName, setFullName}) {
         }}
         variant="standard"
       />
+      {errorCheck && fullName.length === 0 && (
+        <div style={{ color: "red" }} className="red-color">
+          Please enter Full name
+        </div>
+      )}
       <br />
 
       <TextField
         style={{ marginTop: "30px", width: "70%" }}
         id="standard-number"
         name="DisplayName"
+        error={errorCheck && displayName === ""}
         onChange={(e) => {
-          setFullName(e.target.value);
+          setDisplayName(e.target.value);
         }}
         label="Display Name"
         type="text"
@@ -51,6 +60,11 @@ function Step1({fullName, setFullName}) {
         }}
         variant="standard"
       />
+      {errorCheck && displayName.length === 0 && (
+        <div style={{ color: "red" }} className="red-color">
+          Please enter Display name
+        </div>
+      )}
     </CardContent>
   );
 }
