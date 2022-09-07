@@ -88,21 +88,33 @@ function Home() {
 
           <br />
           {currentStep === 1 ? (
-            <Step1 errorCheck={errorCheck} setErrorCheck={setErrorCheck} fullName={fullName} setFullName={setFullName} displayName={displayName} setDisplayName={setDisplayName}/>
+            <Step1
+              errorCheck={errorCheck}
+              setErrorCheck={setErrorCheck}
+              fullName={fullName}
+              setFullName={setFullName}
+              displayName={displayName}
+              setDisplayName={setDisplayName}
+            />
           ) : currentStep === 2 ? (
-            <Step2 errorCheck={errorCheck} setErrorCheck={setErrorCheck}
-             workspaceName={workspaceName} setWorkspaceName={setWorkspaceName}
-             workspaceUrl={workspaceUrl} setWorkspaceUrl={setWorkspaceUrl}
+            <Step2
+              errorCheck={errorCheck}
+              setErrorCheck={setErrorCheck}
+              workspaceName={workspaceName}
+              setWorkspaceName={setWorkspaceName}
+              workspaceUrl={workspaceUrl}
+              setWorkspaceUrl={setWorkspaceUrl}
             />
           ) : currentStep === 3 ? (
             <Step3
+             
               handleClick={handleClick}
               handleClick2={handleClick2}
               tracker={tracker}
               trackers={trackers}
             />
           ) : (
-            <Step4 fullName={fullName} />
+            <Step4 fullName={displayName} />
           )}
         </CardActionArea>
         {currentStep < 4 ? (
